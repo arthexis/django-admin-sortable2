@@ -7,7 +7,11 @@ from django.conf import settings
 from django.conf.urls import url
 from django.core.exceptions import ImproperlyConfigured
 from django.core.paginator import EmptyPage
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    # Django <1.10 compliance
+    from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.db.models import Max, F
 from django.forms.models import BaseInlineFormSet
